@@ -5,6 +5,8 @@ from cecullar_automata.rules import *
 from cecullar_automata.rules_2d import rules_2d
 from cecullar_automata.generations_creators import generations_creators
 from cecullar_automata.gif_creator import gif_creator
+
+
 # https://en.wikipedia.org/wiki/Life-like_cellular_automaton
 
 class cecullar_automata:
