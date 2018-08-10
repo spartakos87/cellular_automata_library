@@ -72,33 +72,33 @@ class rules_2d:
             raise Exception(e)
 
 
-def read_rule_hexagonal_neighborhood(self):
-    """
-    Bx/SxH
-    The x can be 0 to 4
+    def read_rule_hexagonal_neighborhood(self):
+        """
+        Bx/SxH
+        The x can be 0 to 4
 
-    :return:
-    """
-    try:
-        self.input_rule =self.input_rule[:-1]
-        birth, alive = self.input_rule.split('/')
-        birth = [int(i) for i in birth if i.isdigit()]
-        alive = [int(i) for i in alive if i.isdigit()]
+        :return:
         """
-        First we check if a list is empty so is 0(?)
-        And secondly if there is nummber > 6 , in this case 
-        raise exception.
-        Accept only numbers 0-4
-        """
-        if len(list(filter(lambda x: x > 4, birth))) > 0 or len(list(filter(lambda x: x > 4, alive))) > 0:
-            raise Exception("There is the number >4 inside the rule.Only numbers 0-4 are acceptable.")
-        if len(birth) == 0:
-            birth.append(0)
-        if len(alive) == 0:
-            alive.append(0)
-        return [birth, alive, 'H']
-    except Exception as e:
-        raise Exception(e)
+        try:
+            self.input_rule =self.input_rule[:-1]
+            birth, alive = self.input_rule.split('/')
+            birth = [int(i) for i in birth if i.isdigit()]
+            alive = [int(i) for i in alive if i.isdigit()]
+            """
+            First we check if a list is empty so is 0(?)
+            And secondly if there is nummber > 6 , in this case 
+            raise exception.
+            Accept only numbers 0-4
+            """
+            if len(list(filter(lambda x: x > 4, birth))) > 0 or len(list(filter(lambda x: x > 4, alive))) > 0:
+                raise Exception("There is the number >4 inside the rule.Only numbers 0-4 are acceptable.")
+            if len(birth) == 0:
+                birth.append(0)
+            if len(alive) == 0:
+                alive.append(0)
+            return [birth, alive, 'H']
+        except Exception as e:
+            raise Exception(e)
 
 
 
