@@ -6,7 +6,7 @@ setup(name='cellular_automata',
       packages=['cellular_automata'],
       python_requires='>3.5',
       install_requires=['numpy','matplotlib'],
-      description='Python library which create cecullar automata',
+      description='Python library which create cellular automata',
        author='Serepas Filippas aka spartakos87',
        author_email='serepasf@gmail.com',
       )
