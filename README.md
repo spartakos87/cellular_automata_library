@@ -26,3 +26,4 @@ game_of_life.game_of_life()
 
 At the end , a GIF will be pop up to our desktop , like this,
 
+![Scheme](resources/game_of_life.gif)
