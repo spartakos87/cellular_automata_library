@@ -9,7 +9,7 @@ from cellular_automata.gif_creator import gif_creator
 
 # https://en.wikipedia.org/wiki/Life-like_cellular_automaton
 
-class cecullar_automata:
+class cellular_automata:
     def __init__(self, width=10,height=10, input_array='', generations=10, save_image=False,
                  save_data=False, filename=''):
         self.width = width
