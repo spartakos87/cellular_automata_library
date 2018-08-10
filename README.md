@@ -20,7 +20,7 @@ the [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
   Show go to favorite Python IDE or directly to Python repl and copy the follow piece of code,
 
 ```python
-from cecullar_automata.cecullar_automata import cecullar_automata as ca
+from cellular_automata.cellular_automata import cellular_automata as ca
 game_of_life = ca(width=100,height=100,generations=100)
 game_of_life.game_of_life()
 ```
@@ -56,7 +56,7 @@ A list of cellular rules which already are implemented and how we call them,
 First define the above parameters
 
 ```python
-from cecullar_automata.cecullar_automata import cecullar_automata as ca
+from cellular_automata.cellular_automata import cellular_automata as ca
 sample = ca(width=10,height=10, input_array='', generations=10, save_image=False,
                           save_data=False, filename='')
 ```
