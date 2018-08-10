@@ -54,7 +54,7 @@ class generations_creators:
     def next_generation(self, current_generation):
             new_generation = np.zeros(current_generation.shape).astype(int)
             for k,i in enumerate(current_generation):
-                for kk,j in enumerate(current_generation):
+                for kk,j in enumerate(i):
                     new_state_of_element = self.apply_rule(current_generation[k,kk], self.search_neighbors(k,kk,
                                                                                                     current_generation))
                     new_generation[k,kk] = new_state_of_element
