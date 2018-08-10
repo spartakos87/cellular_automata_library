@@ -7,7 +7,7 @@ We present you a new Python library , the **cellular_automata**.
 Clone the current repository and then,
 
 ```bash
-> cd cellular_automata
+> cd cellular_automata_library
 > python3 setup.py install
 ```
 
