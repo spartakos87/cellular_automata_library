@@ -122,6 +122,7 @@ There rest will be done from our library.
 
 ## TODO
 - [ ] Add classic [examples of patterns](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
+- [ ] Add Wolfram 256 rules
 - [ ] Add library to pip
 - [ ] Improve the speed of library
 - [ ] Add more binary cellular automata
