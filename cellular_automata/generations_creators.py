@@ -18,16 +18,21 @@ class generations_creators:
         y: row
         return: list of neighbors
         """
-        next_e = (x,y+1)
-        before_e = (x,y-1)
-        up_left_e = (x-1,y-1)
-        up_right_e = (x-1,y+1)
-        up_e = (x-1,y)
-        down_left_e = (x+1,y-1)
-        down_right_e = (x+1,y+1)
-        down_e = (x+1,y)
-        neighbors_lst = [next_e,before_e,up_left_e,up_right_e,up_e,down_left_e,down_right_e,down_e]
+        next_e = (x,y+1) # E
+        before_e = (x,y-1) # W
+        up_left_e = (x-1,y-1) # NW
+        up_right_e = (x-1,y+1) # NE
+        up_e = (x-1,y) # N
+        down_left_e = (x+1,y-1) # SW
+        down_right_e = (x+1,y+1) # SE
+        down_e = (x+1,y) # S
         neighbors_lst_values = []
+        if self.rule[-1] == 'M':
+            neighbors_lst = [next_e,before_e,up_left_e,up_right_e,up_e,down_left_e,down_right_e,down_e]
+        elif self.rule[-1] == 'H':
+            neighbors_lst = [up_e,up_left_e,before_e, next_e,down_e,down_right_e]
+        elif self.rule[-1] == 'V':
+            neighbors_lst = [up_e,down_e,before_e,next_e]
         for i in neighbors_lst:
             try:
                 neighbors_lst_values.append(generation[i[0],i[-1]])
@@ -47,19 +52,18 @@ class generations_creators:
             if sum(list_of_neighbors) in self.rule[0]:
                 future_state = 1
         else:
-            if sum(list_of_neighbors) in self.rule[-1]:
+            if sum(list_of_neighbors) in self.rule[1]:
                 future_state = 1
         return  future_state
 
     def next_generation(self, current_generation):
-            new_generation = np.zeros(current_generation.shape).astype(int)
-            for k,i in enumerate(current_generation):
-                for kk,j in enumerate(i):
-                    new_state_of_element = self.apply_rule(current_generation[k,kk], self.search_neighbors(k,kk,
-                                                                                                    current_generation))
-                    new_generation[k,kk] = new_state_of_element
-            return  new_generation
-
+        new_generation = np.zeros(current_generation.shape).astype(int)
+        for k,i in enumerate(current_generation):
+            for kk,j in enumerate(i):
+                new_state_of_element = self.apply_rule(current_generation[k,kk], self.search_neighbors(k,kk,
+                                                                                                       current_generation))
+                new_generation[k,kk] = new_state_of_element
+        return  new_generation
 
 
     def create_generations(self):
