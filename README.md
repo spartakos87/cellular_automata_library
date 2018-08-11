@@ -33,7 +33,18 @@ At the end , a GIF will be pop up to our desktop , like this,
 ## Preview all choices
 
 First of all until now the library support only binary cellular automata,
- whith Bxxx/Sxxx rule formatting
+ with the below formatting
+ * [Moore neighbohood](https://en.wikipedia.org/wiki/Moore_neighborhood),
+ In this case the cell has 8 neighbors and the formatting of rule is,
+ Bxxx/Sxxx. The x can be numbers fro 0 to 8.
+ * [Von Neumann neighborhood
+](https://en.wikipedia.org/wiki/Von_Neumann_neighborhood),
+ In this case the cell has 4 neighbors and the formatting of rule is,
+ Bxxx/SxxxV. The x can be numbers fro 0 to 4.
+ * [Hexagonal neighborhood](https://en.wikibooks.org/wiki/Cellular_Automata/Neighborhood)
+ In this case the cell has 6 neighbors and the formatting of rule is,
+  Bxxx/SxxxH. The x can be numbers fro 0 to 6.
+
 
 ```python
 ca(width=10,height=10, input_array='', generations=10, save_image=False,
