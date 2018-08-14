@@ -11,7 +11,7 @@ from cellular_automata.movie_creator import movie_creator
 # https://en.wikipedia.org/wiki/Life-like_cellular_automaton
 
 class cellular_automata:
-    def __init__(self, width=10,height=10, input_array='', generations=10, save_image=False,
+    def __init__(self, width=10, height=10, input_array='', generations=10, save_image=False,
                  save_data=False, save_movie=False, filename=''):
         self.width = width
         self.height = height
@@ -32,7 +32,6 @@ class cellular_automata:
         :return:
         """
         self._create_new_universe(rules_2d_dict['game_of_life'])
-
 
     def replicator(self):
         """
@@ -155,8 +154,6 @@ class cellular_automata:
         """
         self._create_new_universe(rules_2d_dict['anneal'])
 
-
-
     def specify_rule_2d(self, rule):
         """
         User can input his/her rule
@@ -174,6 +171,13 @@ class cellular_automata:
         np.save(self.filename+".npy",self.universe)
         # with open(self.filename,'w') as ouput:
         #     dump(self.universe,ouput)
+
+    def reurn_universe(self):
+        """
+
+        :return:
+        """
+        return self.universe
 
     def create_random_array(self,rule):
         return np.random.randint(rule[-1],size=(self.width,self.height))
