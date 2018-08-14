@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib import colors
 
 
-class movie_creator:
+class MovieCreator:
     def __init__(self,universe,save=True,filename='',rule=''):
         """
 
