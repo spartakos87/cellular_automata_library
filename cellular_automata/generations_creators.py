@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class generations_creators:
     def __init__(self,first_generation='', rule='', generations=2):
         """
