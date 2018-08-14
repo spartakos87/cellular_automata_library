@@ -5,21 +5,23 @@ from cellular_automata.rules import *
 from cellular_automata.rules_2d import rules_2d
 from cellular_automata.generations_creators import generations_creators
 from cellular_automata.gif_creator import gif_creator
+from cellular_automata.movie_creator import movie_creator
 
 
 # https://en.wikipedia.org/wiki/Life-like_cellular_automaton
 
 class cellular_automata:
     def __init__(self, width=10,height=10, input_array='', generations=10, save_image=False,
-                 save_data=False, filename=''):
+                 save_data=False, save_movie=False, filename=''):
         self.width = width
         self.height = height
         # self.random_array = random_array
         self.input_array = input_array
-        self.first_generation = self.random_or_input_array()
+        # self.first_generation = self.random_or_input_array()
         self.generations = generations
         self.save_image = save_image
         self.save_data = save_data
+        self.save_movie = save_movie
         self.filename = filename
         self.universe=''
 
@@ -169,23 +171,24 @@ class cellular_automata:
 
         :return:
         """
-        with open(self.filename) as ouput:
-            dump(self.universe,ouput)
+        np.save(self.filename+".npy",self.universe)
+        # with open(self.filename,'w') as ouput:
+        #     dump(self.universe,ouput)
 
+    def create_random_array(self,rule):
+        return np.random.randint(rule[-1],size=(self.width,self.height))
 
-    def create_random_array(self):
-        return np.random.randint(2,size=(self.width,self.height))
-
-    def random_or_input_array(self):
+    def random_or_input_array(self,rule):
         if self.input_array == '':
-            self.input_array = self.create_random_array()
+            self.input_array = self.create_random_array(rule)
         return self.input_array
 
     def _create_new_universe(self,rule):
-        self.universe = generations_creators(self.first_generation, rules_2d(rule).read_rule()
-                                             ,self.generations ).create_generations()
-        gif_creator(self.universe,save=self.save_image,filename=self.filename).create_fig()
+        rule = rules_2d(rule).read_rule()
+        self.first_generation = self.random_or_input_array(rule)
+        self.universe = generations_creators(self.first_generation, rule,self.generations ).create_generations()
+        gif_creator(self.universe,save=self.save_image,filename=self.filename,rule=rule).create_fig()
         if self.save_data:
             self.store_data()
-
-
+        if self.save_movie:
+            movie_creator(self.universe,save=self.save_movie,filename=self.filename,rule=rule).create_movie()
