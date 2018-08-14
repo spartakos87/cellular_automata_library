@@ -1,5 +1,5 @@
 
-class rules_2d:
+class Rules2d:
     def __init__(self,input_rule=''):
         self.input_rule = input_rule
 
@@ -11,7 +11,7 @@ class rules_2d:
         """
         last_element = self.input_rule[-1]
         # Check if it's Generation rule
-        if len([i for i in self.input_rule if i=='/']) > 1:
+        if len([i for i in self.input_rule if i == '/']) > 1:
             number_of_states = int(''.join([i for i in self.input_rule.split('/')[-1] if i.isdigit()]))
             self.input_rule = '/'.join(self.input_rule.split('/')[:2])
         else:
