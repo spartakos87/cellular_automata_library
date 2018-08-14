@@ -2,15 +2,15 @@ import numpy as np
 from json import dump
 
 from cellular_automata.rules import *
-from cellular_automata.rules_2d import rules_2d
-from cellular_automata.generations_creators import generations_creators
-from cellular_automata.gif_creator import gif_creator
-from cellular_automata.movie_creator import movie_creator
+from cellular_automata.rules2d import Rules2d
+from cellular_automata.generationscreators import GenerationsCreators
+from cellular_automata.gifcreator import GifCreator
+from cellular_automata.moviecreator import MovieCreator
 
 
 # https://en.wikipedia.org/wiki/Life-like_cellular_automaton
 
-class cellular_automata:
+class CellularAutomata:
     def __init__(self, width=10, height=10, input_array='', generations=10, save_image=False,
                  save_data=False, save_movie=False, filename=''):
         self.width = width
@@ -23,8 +23,7 @@ class cellular_automata:
         self.save_data = save_data
         self.save_movie = save_movie
         self.filename = filename
-        self.universe=''
-
+        self.universe = ''
 
     def game_of_life(self):
         """
@@ -188,11 +187,11 @@ class cellular_automata:
         return self.input_array
 
     def _create_new_universe(self,rule):
-        rule = rules_2d(rule).read_rule()
+        rule = Rules2d(rule).read_rule()
         self.first_generation = self.random_or_input_array(rule)
-        self.universe = generations_creators(self.first_generation, rule,self.generations ).create_generations()
-        gif_creator(self.universe,save=self.save_image,filename=self.filename,rule=rule).create_fig()
+        self.universe = GenerationsCreators(self.first_generation, rule, self.generations).create_generations()
+        GifCreator(self.universe, save=self.save_image, filename=self.filename, rule=rule).create_fig()
         if self.save_data:
             self.store_data()
         if self.save_movie:
-            movie_creator(self.universe,save=self.save_movie,filename=self.filename,rule=rule).create_movie()
+            MovieCreator(self.universe, save=self.save_movie, filename=self.filename, rule=rule).create_movie()

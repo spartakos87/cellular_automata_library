@@ -1,6 +1,3 @@
-import matplotlib
-# matplotlib.use("Agg")
-# import matplotlib.pyplot as plt
 import matplotlib.animation as manimation
 import matplotlib.pyplot as plt
 from matplotlib import colors
