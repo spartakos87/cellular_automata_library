@@ -5,16 +5,24 @@ class rules_2d:
 
     def read_rule(self):
         """
+        We will add Generation rules, which is in foramt Bx/Sy/C,where c is the number of all states
 
         :return:
         """
         last_element = self.input_rule[-1]
-        if last_element == 'V':
-            return self.read_rule_von_neumann_neighborhood()
-        elif last_element == 'H':
-            return self.read_rule_hexagonal_neighborhood()
+        # Check if it's Generation rule
+        if len([i for i in self.input_rule if i=='/']) > 1:
+            number_of_states = int(''.join([i for i in self.input_rule.split('/')[-1] if i.isdigit()]))
+            self.input_rule = '/'.join(self.input_rule.split('/')[:2])
         else:
-            return self.read_rule_moore_neighborhood()
+            # In case we havent multi states but binary two(2) states
+            number_of_states = 2
+        if last_element == 'V':
+            return self.read_rule_von_neumann_neighborhood() + [number_of_states]
+        elif last_element == 'H':
+            return self.read_rule_hexagonal_neighborhood() + [number_of_states]
+        else:
+            return self.read_rule_moore_neighborhood() + [number_of_states]
 
     def read_rule_moore_neighborhood(self):
         """
