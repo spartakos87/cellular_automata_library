@@ -20,7 +20,7 @@ the [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
   Show go to favorite Python IDE or directly to Python repl and copy the follow piece of code,
 
 ```python
-from cellular_automata.cellular_automata import cellular_automata as ca
+from cellular_automata.cellular_automata import CellularAutomata as ca
 game_of_life = ca(width=100,height=100,generations=100)
 game_of_life.game_of_life()
 ```
@@ -44,10 +44,13 @@ First of all until now the library support only binary cellular automata,
  * [Hexagonal neighborhood](https://en.wikibooks.org/wiki/Cellular_Automata/Neighborhood)
  In this case the cell has 6 neighbors and the formatting of rule is,
   Bxxx/SxxxH. The x can be numbers fro 0 to 6.
+ * Now library support and this rule notation Bxxx/Sxxx/C(H, V).Where the C is the number of states
+ So, If we want to implement the [Star Wars rule](http://www.mirekw.com/ca/rule_starwars.html), will
+ parse this, B2/S345/4
 
 
 ```python
-ca(width=10,height=10, input_array='', generations=10, save_image=False,
+ca(width=10,height=10, input_array='', generations=10, save_image=False,save_movie=False
                  save_data=False, filename='')
 ```
 These are the pre-define parameters of our library
@@ -57,17 +60,19 @@ These are the pre-define parameters of our library
 * input_array: is take a numpy array,with only 0's and 1's. If we don't
 define this parameter the library will create a random numpy array with zeros and ones
 * generations: is take a int number and define how many generations we will have
-* save_image:If is True library save the output gif with the name which define the parameter filename
+* save_image:If is True library save the output as gif with the name which define the parameter filename
 * save_file: If is true create a file with the name of parameter filename and it contains a list of numpy arrays
+*save_movie: If is True library save the output mp4 move with the name which define the parameter filename
 * filename: This name is used to save the gif file and the list of numpy array,which represnt the generations
 
+Even if you don't choose to save your data at the begin you can call , anytime , the method `store_data`
 
 A list of cellular rules which already are implemented and how we call them,
 
 First define the above parameters
 
 ```python
-from cellular_automata.cellular_automata import cellular_automata as ca
+from cellular_automata.cellular_automata import CellularAutomata as ca
 sample = ca(width=10,height=10, input_array='', generations=10, save_image=False,
                           save_data=False, filename='')
 ```

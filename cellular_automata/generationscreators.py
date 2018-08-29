@@ -1,6 +1,7 @@
 import numpy as np
 
-class generations_creators:
+
+class GenerationsCreators:
     def __init__(self,first_generation='', rule='', generations=2):
         """
 
@@ -27,11 +28,11 @@ class generations_creators:
         down_right_e = (x+1,y+1) # SE
         down_e = (x+1,y) # S
         neighbors_lst_values = []
-        if self.rule[-1] == 'M':
+        if self.rule[-2] == 'M':
             neighbors_lst = [next_e,before_e,up_left_e,up_right_e,up_e,down_left_e,down_right_e,down_e]
-        elif self.rule[-1] == 'H':
+        elif self.rule[-2] == 'H':
             neighbors_lst = [up_e,up_left_e,before_e, next_e,down_e,down_right_e]
-        elif self.rule[-1] == 'V':
+        elif self.rule[-2] == 'V':
             neighbors_lst = [up_e,down_e,before_e,next_e]
         for i in neighbors_lst:
             try:
@@ -42,18 +43,27 @@ class generations_creators:
 
     def apply_rule(self,current_generation,list_of_neighbors):
         """
+        We apply the Generation rules. So, we need to find all the alive cells,which are
+        the 1. So, before sum we must filter all the 1.
 
         :param current_generation:
         :param list_of_neighbors:
         :return:
         """
+        list_of_neighbors = list(filter(lambda x:x==1,list_of_neighbors))
         future_state = 0
         if current_generation == 0:
             if sum(list_of_neighbors) in self.rule[0]:
                 future_state = 1
-        else:
+        elif current_generation == 1:
             if sum(list_of_neighbors) in self.rule[1]:
                 future_state = 1
+            elif self.rule[-1]> 2:
+                future_state = (current_generation + 1) % self.rule[-1]
+                # In case of multi states the cell envolve
+        elif current_generation not in [0, 1]:
+            # In case the cell is not dead(0) or alive(1)
+            future_state = (current_generation + 1) % self.rule[-1]
         return  future_state
 
     def next_generation(self, current_generation):
@@ -64,7 +74,6 @@ class generations_creators:
                                                                                                        current_generation))
                 new_generation[k,kk] = new_state_of_element
         return  new_generation
-
 
     def create_generations(self):
         """
