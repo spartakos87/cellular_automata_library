@@ -65,6 +65,7 @@ define this parameter the library will create a random numpy array with zeros an
 *save_movie: If is True library save the output mp4 move with the name which define the parameter filename
 * filename: This name is used to save the gif file and the list of numpy array,which represnt the generations
 
+Even if you don't choose to save your data at the begin you can call , anytime , the method `store_data`
 
 A list of cellular rules which already are implemented and how we call them,
 
